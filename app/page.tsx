@@ -1,101 +1,172 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { GraduationCap, BarChart, Users, Calendar, ChevronRight } from 'lucide-react';
+import { Footer } from "../components/footer";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
+import axios from "axios";
+
+
+
+export default function LandingPage() {
+  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isMounted, setIsMounted] = useState(false); 
+
+  useEffect(() => {
+    setIsMounted(true); 
+  }, []);
+
+
+  const login = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    try {
+        const response = await axios.post("/api/login", { email, password });
+
+        const token = response.data.data.token;
+        const role = response.data.data.role;
+        console.log("Token:", token);
+
+        console.log("Response data:", response.data);
+
+        if (token) {
+            localStorage.setItem("token", token);
+            router.push(`/pages/${role}/dashboard`);
+          }
+    } catch (err: any) {
+        console.error("Error:", err);
+        setError(err.response?.data?.message || "Login failed. Please try again.");
+    }
+};
+
+  
+  if (!isMounted) {
+    return null; 
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-100 flex flex-col">
+      <div className="flex-grow">
+        <div className="container mx-auto px-4 py-8">
+          <header className="flex justify-between items-center mb-16">
+            <motion.div 
+              className="flex items-center space-x-2"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <GraduationCap className="h-10 w-10 text-blue-400" />
+              <span className="text-3xl font-bold text-blue-400">EduTrack</span>
+            </motion.div>
+            <nav>
+              <ul className="flex space-x-6">
+                <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <Link href="#features" className="text-gray-300 hover:text-blue-400 transition-colors">Features</Link>
+                </motion.li>
+                <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <Link href="#about" className="text-gray-300 hover:text-blue-400 transition-colors">About</Link>
+                </motion.li>
+                <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                  <Link href="#contact" className="text-gray-300 hover:text-blue-400 transition-colors">Contact</Link>
+                </motion.li>
+              </ul>
+            </nav>
+          </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <main className="flex flex-col lg:flex-row items-center justify-between gap-16">
+            <motion.div 
+              className="lg:w-1/2"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <h1 className="text-5xl font-bold text-blue-400 mb-6">Elevate Your Learning Journey</h1>
+              <p className="text-xl text-gray-300 mb-8">
+                Experience the future of education with EduTrack's comprehensive student tracking system. 
+                Empower your academic journey with cutting-edge tools and insights.
+              </p>
+              <div className="grid grid-cols-2 gap-6 mb-12">
+                <FeatureCard icon={<BarChart className="h-8 w-8 text-blue-400" />} title="Performance Analytics" />
+                <FeatureCard icon={<Users className="h-8 w-8 text-green-400" />} title="Collaborative Learning" />
+                <FeatureCard icon={<Calendar className="h-8 w-8 text-purple-400" />} title="Smart Scheduling" />
+                <FeatureCard icon={<GraduationCap className="h-8 w-8 text-red-400" />} title="Academic Milestones" />
+              </div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button className="text-lg px-8 py-6 bg-blue-500 hover:bg-blue-600 text-white">
+                  Get Started <ChevronRight className="ml-2 h-5 w-5" />
+                </Button>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              className="w-full max-w-md"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <Card className="bg-gray-800 border-gray-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-blue-400">Log in to Your Account</CardTitle>
+                  <CardDescription className="text-gray-400">Access your personalized dashboard</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={login}>
+                    <div className="grid w-full items-center gap-6">
+                      <div className="flex flex-col space-y-2">
+                        <Label htmlFor="email" className="text-gray-300">Email</Label>
+                        <Input id="email" 
+                        placeholder="your@email.com" 
+                        className="bg-gray-700 text-gray-100 border-gray-600" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required/>
+                      </div>
+                      <div className="flex flex-col space-y-2">
+                        <Label htmlFor="password" className="text-gray-300">Password</Label>
+                        <Input id="password"
+                         type="password" 
+                         className="bg-gray-700 text-gray-100 border-gray-600"
+                         value={password}
+                         onChange={(e) => setPassword(e.target.value)}
+                         required
+                          />
+                      </div>
+                    </div>
+                    {error && <div className="text-red-500 text-sm mt-2">{error}</div>}<br></br>
+                    <Button type="submit" className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white">Log In</Button>
+
+                  </form>
+                </CardContent>
+                <CardFooter className="flex flex-col">
+                </CardFooter>
+              </Card>
+            </motion.div>
+          </main>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <Footer />
     </div>
+  );
+}
+
+function FeatureCard({ icon, title }: { icon: React.ReactNode, title: string }) {
+  return (
+    <motion.div 
+      className="flex items-center space-x-3 p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700"
+      whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(66, 153, 225, 0.5)" }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      {icon}
+      <span className="font-semibold text-gray-200">{title}</span>
+    </motion.div>
   );
 }
