@@ -65,7 +65,7 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
             >
               <GraduationCap className="h-10 w-10 text-blue-400" />
-              <span className="text-3xl font-bold text-blue-400">EduTrack</span>
+              <span className="text-3xl font-bold text-blue-400">RichTrack</span>
             </motion.div>
             <nav>
               <ul className="flex space-x-6">
