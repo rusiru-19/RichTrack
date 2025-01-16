@@ -12,6 +12,7 @@ export async function POST() {
         return new NextResponse('No data', { status: 404 });
       }
       const data = query.map((row) => row);
+      console.log(data)
       return NextResponse.json({ success: true, data: query }, { status: 200 });
 
       
