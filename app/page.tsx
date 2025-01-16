@@ -40,6 +40,8 @@ export default function LandingPage() {
 
         if (token) {
             localStorage.setItem("token", token);
+            localStorage.setItem("role", role);
+            localStorage.setItem("username", email);
             router.push(`/pages/${role}/dashboard`);
           }
     } catch (err: any) {

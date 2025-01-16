@@ -21,10 +21,10 @@ export default function Studentlayout( {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Navbar />
-              <main className="flex-grow p-6 bg-gray-100  h-screen ">
-            {children}
-              </main>
+        <Navbar />
+        <main className="flex-grow p-6 bg-gray-100 min-h-screen text-black">
+          {children}
+        </main>
 
 
               </motion.div>
