@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { neon } from '@neondatabase/serverless';
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken'
 
 export async function POST(req) {
   try {

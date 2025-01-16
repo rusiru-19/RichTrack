@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
-const navbar = () => {
+const Navbar = () => {
   const router = useRouter();
   const logout = () => {
     localStorage.removeItem('token');
@@ -32,4 +32,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

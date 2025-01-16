@@ -18,7 +18,7 @@ export default function LandingPage() {
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>('');
   const [isMounted, setIsMounted] = useState(false); 
 
   useEffect(() => {
@@ -143,7 +143,7 @@ export default function LandingPage() {
                           />
                       </div>
                     </div>
-                    {error && <div className="text-red-500 text-sm mt-2">{error}</div>}<br></br>
+                    {error && <div className="text-red-500 text-sm mt-2">'{error}'</div>}<br></br>
                     <Button type="submit" className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white">Log In</Button>
 
                   </form>
