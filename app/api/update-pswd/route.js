@@ -7,6 +7,7 @@ export async function POST(req) {
     const sql = neon(url);
 
     const query = await sql`UPDATE users SET password = (${body.password}) WHERE username = (${body.username})`;
+    console.log(query);
     return NextResponse.json( {
         msg: "Password updated successfully",
     });

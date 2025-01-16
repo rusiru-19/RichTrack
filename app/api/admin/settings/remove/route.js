@@ -9,6 +9,7 @@ export async function POST(req) {
         const query = await sql`
             DELETE  FROM users WHERE username = (${body.username})
         `;
+        console.log(query);
 
         return NextResponse.json({
             message: body.name + " Account Deleted",
