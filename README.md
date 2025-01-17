@@ -45,4 +45,24 @@ The following tables are part of the database:
 | public  | teachers           | table  | rits-db_owner |
 | public  | users              | table  | rits-db_owner |
 
+## Security
+
+### JWT Authentication for Session Management
+
+In this project, **JSON Web Tokens (JWT)** are used for secure session management, enabling authentication for users. JWT provides a compact and self-contained way to securely transmit information between parties.
+
+#### How JWT is used in Richtracker:
+
+1. **Login Process:**
+   - Users log in using their credentials (username and password).
+   - Upon successful login, the server generates a JWT containing user-specific data and returns it to the frontend.
+   - The JWT is then stored on the client-side (in `localStorage` ).
+
+2. **Session Management:**
+   - Each time the user interacts with the backend, the JWT is sent in the `Authorization` header of HTTP requests (as a Bearer token).
+   - The backend verifies the JWT to authenticate the user and ensure the request is coming from a valid session.
+
+
+
+
 
