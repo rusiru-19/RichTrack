@@ -60,8 +60,12 @@ const AccountManagementForm = () => {
             setMessage(response.data.msg);
             setUsername('');
             setPassword('');
-        } catch (error: any) {
-            setMessage('Error updating password: ' + error.response?.data?.message || 'Unknown error occurred');
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setMessage('Error: ' + (error.response?.data?.message || error.message));
+            } else {
+                setMessage('An unexpected error occurred');
+            }
         }
     };
 
@@ -72,8 +76,12 @@ const AccountManagementForm = () => {
             const response = await axios.post('/api/admin/settings/remove', { username: deleteUsername });
             setMessage(response.data.msg);
             setDeleteUsername('');
-        } catch (error: any) {
-            setMessage('Error removing account: ' + error.response?.data?.message || 'Unknown error occurred');
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setMessage('Error: ' + (error.response?.data?.message || error.message));
+            } else {
+                setMessage('An unexpected error occurred');
+            }
         }
     };
 
