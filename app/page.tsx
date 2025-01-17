@@ -38,11 +38,16 @@ export default function LandingPage() {
         localStorage.setItem('username', email);
         router.push(`/pages/${role}/dashboard`);
       }
-    } catch (err: unknown) {
-      const error = err as AxiosError;
-      console.error('Error:', error);
-      setError(error.response?.data?.message || 'Login failed. Please try again.');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const errorMessage = error.response?.data?.message || error.message;
+        console.error('Authentication error:', errorMessage);
+      } else {
+        console.error('Unexpected error:', error);
+      }
+      router.push('/');
     }
+    
   };
 
   if (!isMounted) {

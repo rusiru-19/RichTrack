@@ -34,7 +34,8 @@ function Dashboard() {
         }
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
-          console.error("Authentication error:", error.response || error.message);
+          const errorMessage = error.response?.data?.message || error.message;
+          console.error("Authentication error:", errorMessage);
         } else {
           console.error("Unexpected error:", error);
         }
