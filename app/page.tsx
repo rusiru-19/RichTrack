@@ -126,15 +126,4 @@ export default function LandingPage() {
   );
 }
 
-function FeatureCard({ icon, title }: { icon: React.ReactNode; title: string }) {
-  return (
-    <motion.div
-      className="flex items-center space-x-3 p-4 bg-gray-800 rounded-lg shadow-lg border border-gray-700"
-      whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(66, 153, 225, 0.5)' }}
-      transition={{ type: 'spring', stiffness: 300 }}
-    >
-      {icon}
-      <span className="font-semibold text-gray-200">{title}</span>
-    </motion.div>
-  );
-}
+
