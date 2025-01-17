@@ -1,22 +1,44 @@
 "use client";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Link from "next/link";
+import axios from "axios";
+interface Club {
+  id: number;
+  name: string;
+  description: string;
+  created_at: string;
+}
+
+interface Achievement {
+  name: string;
+  title: string;
+  description: string;
+  date: string;
+}
+
+interface ResponseData {
+  clubs: Club[];
+  achievements: Achievement[];
+}
 
 const ClubsAndAchievements = () => {
-  const [data, setData] = useState({ clubs: [], achievements: [] });
+  const [data, setData] = useState<ResponseData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post("/api/admin/clubs");
+        const response = await axios.post<ResponseData>("/api/admin/clubs");
         console.log("Response:", response.data);
-        setData(response.data); 
-        setLoading(false); // Ensure loading state is set to false once data is fetched
+        setData(response.data);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false); // Ensure loading state is set to false on error
+        if (axios.isAxiosError(error)) {
+          console.error("Error fetching data:", error.message);
+        } else {
+          console.error("Unexpected error:", error);
+        }
+        setLoading(false);
       }
     };
 
@@ -30,13 +52,14 @@ const ClubsAndAchievements = () => {
   return (
     <div className="p-5">
       <h1 className="text-3xl font-bold mb-6">Clubs and Achievements</h1>
-<Link href="./clubs/form">
-  <button    
-    className="bg-green-700 text-white py-1 px-3 hover:bg-green-800 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors">
-    Add clubs
-    </button>
-    </Link>
-    <br></br>
+      <Link href="./clubs/form">
+        <button
+          className="bg-green-700 text-white py-1 px-3 hover:bg-green-800 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+        >
+          Add clubs
+        </button>
+      </Link>
+      <br></br>
       <h2 className="text-2xl font-semibold mb-4">Clubs</h2>
       <table className="table-auto w-full border-collapse border border-gray-300 mb-6">
         <thead>
@@ -48,7 +71,7 @@ const ClubsAndAchievements = () => {
           </tr>
         </thead>
         <tbody>
-          {data.clubs && data.clubs.length > 0 ? (
+          {data && data.clubs.length > 0 ? (
             data.clubs.map((club) => (
               <tr key={club.id} className="text-center">
                 <td className="px-4 py-2 border border-gray-300">{club.id}</td>
@@ -61,7 +84,7 @@ const ClubsAndAchievements = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4" className="px-4 py-2 border border-gray-300 text-center">
+              <td  className="px-4 py-2 border border-gray-300 text-center">
                 No clubs available
               </td>
             </tr>
@@ -80,7 +103,7 @@ const ClubsAndAchievements = () => {
           </tr>
         </thead>
         <tbody>
-          {data.achievements && data.achievements.length > 0 ? (
+          {data && data.achievements.length > 0 ? (
             data.achievements.map((achievement, index) => (
               <tr key={index} className="text-center">
                 <td className="px-4 py-2 border border-gray-300">{achievement.name}</td>
@@ -93,16 +116,15 @@ const ClubsAndAchievements = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4" className="px-4 py-2 border border-gray-300 text-center">
+              <td  className="px-4 py-2 border border-gray-300 text-center">
                 No achievements available
               </td>
             </tr>
           )}
         </tbody>
       </table>
-<br></br>
+      <br></br>
     </div>
-    
   );
 };
 
