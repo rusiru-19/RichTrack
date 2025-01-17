@@ -61,6 +61,37 @@ In this project, **JSON Web Tokens (JWT)** are used for secure session managemen
 2. **Session Management:**
    - Each time the user interacts with the backend, the JWT is sent in the `Authorization` header of HTTP requests (as a Bearer token).
    - The backend verifies the JWT to authenticate the user and ensure the request is coming from a valid session.
+  
+
+## Used Packages
+
+The following packages are used in the **Richtracker** project:
+
+### Dependencies:
+
+- **@neondatabase/serverless**: A serverless database client for Neon DB.
+- **@radix-ui/react-label**: Radix UI component for accessible form labels.
+- **@radix-ui/react-slot**: Radix UI Slot component for content distribution.
+- **axios**: Promise-based HTTP client for making requests.
+- **class-variance-authority**: A utility for handling class names with varying conditions.
+- **framer-motion**: Library for animations and interactions in React.
+- **jsonwebtoken**: For creating and verifying JSON Web Tokens (JWT) for authentication.
+- **lucide-react**: Collection of Lucide icons for React applications.
+- **next**: The React framework for building server-side rendered applications.
+- **react**: The core React library for building user interfaces.
+- **react-dom**: For DOM-specific methods in React.
+- **tailwind-merge**: Utility to merge Tailwind CSS classes while avoiding conflicts.
+
+### Development Dependencies:
+
+- **@types/node**: TypeScript type definitions for Node.js.
+- **@types/react**: TypeScript type definitions for React.
+- **@types/react-dom**: TypeScript type definitions for React DOM.
+- **eslint**: A tool for identifying and fixing problems in JavaScript and TypeScript code.
+- **eslint-config-next**: ESLint configuration preset for Next.js applications.
+- **postcss**: Tool for transforming CSS with JavaScript plugins.
+- **tailwindcss**: Utility-first CSS framework for fast UI development.
+- **typescript**: JavaScript superset for static typing and modern development.
 
 
 
