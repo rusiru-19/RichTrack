@@ -1,8 +1,13 @@
-"use client"
+"use client";
+
 import React, { useState } from "react";
 import axios from "axios";
 
-const ClubsAndAchievementsForm = ({ onDataUpdated }) => {
+type Props = {
+  onDataUpdated: () => void; // Define the type of the onDataUpdated prop
+};
+
+const ClubsAndAchievementsForm: React.FC<Props> = ({ onDataUpdated }) => {
   // State for adding clubs
   const [clubName, setClubName] = useState('');
   const [clubDescription, setClubDescription] = useState('');
@@ -13,7 +18,7 @@ const ClubsAndAchievementsForm = ({ onDataUpdated }) => {
   const [achievementClubName, setAchievementClubName] = useState('');
   const [achievementDate, setAchievementDate] = useState('');
 
-  const handleAddClub = async (e) => {
+  const handleAddClub = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/admin/clubs/add", {
@@ -30,7 +35,7 @@ const ClubsAndAchievementsForm = ({ onDataUpdated }) => {
     }
   };
 
-  const handleAddAchievement = async (e) => {
+  const handleAddAchievement = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/admin/achievements/add", {
@@ -77,7 +82,7 @@ const ClubsAndAchievementsForm = ({ onDataUpdated }) => {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <button 
+          <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
           >
@@ -106,7 +111,7 @@ const ClubsAndAchievementsForm = ({ onDataUpdated }) => {
               value={achievementTitle}
               onChange={(e) => setAchievementTitle(e.target.value)}
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus .ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="mb-4">
@@ -128,7 +133,7 @@ const ClubsAndAchievementsForm = ({ onDataUpdated }) => {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          <button 
+          <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
           >
