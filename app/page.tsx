@@ -10,7 +10,8 @@ import { Footer } from '../components/footer';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
+
 export default function LandingPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
