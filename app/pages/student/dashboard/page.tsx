@@ -2,43 +2,50 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+
 function Dashboard() {
   const router = useRouter();
 
-  const auth = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      console.log("No token found. Redirecting to login.");
-      router.push("/");
-      return;
-    }
+  useEffect(() => {
+    const auth = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.log("No token found. Redirecting to login.");
+        router.push("/");
+        return;
+      }
 
-    try {
-      const response = await axios.post(
-        "/api/auth",{},{
-          headers: {
-            Authorization: `Bearer ${token}`, 
-          },
+      try {
+        const response = await axios.post(
+          "/api/auth",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        console.log("Auth response:", response);
+
+        if (response.status !== 200) {
+          console.log("Authentication failed. Redirecting to login.");
+          router.push("/");
         }
-      );
-
-      console.log("Auth response:", response);
-
-      if (response.status !== 200) {
-        console.log("Authentication failed. Redirecting to login.");
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          console.error("Authentication error:", error.response || error.message);
+        } else {
+          console.error("Unexpected error:", error);
+        }
         router.push("/");
       }
-    } catch (error: any) {
-      console.error("Authentication error:", error.response || error.message);
-      router.push("/"); 
-    }
-  };
+    };
 
-  useEffect(() => {
     auth();
-  }, []);
+  }, [router]);
 
-  return <div>fsf</div>;
+  return <div>Dashboard Content</div>;
 }
 
 export default Dashboard;

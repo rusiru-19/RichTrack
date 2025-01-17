@@ -30,12 +30,16 @@ const AccountManagementForm = () => {
                 role
             });
             setMessage(response.data.message);
-            // Reset fields
             resetFields();
-        } catch (error: any) {
-            setMessage('Error creating account: ' + error.response?.data?.message || 'Unknown error occurred');
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                setMessage('Error creating account: ' + (error.response?.data?.message || error.message));
+            } else {
+                setMessage('An unexpected error occurred');
+            }
         }
     };
+    
 
     const resetFields = (newRole = role) => {
         setFirstName('');
