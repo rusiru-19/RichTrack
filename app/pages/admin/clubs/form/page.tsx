@@ -3,11 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-type Props = {
-  onDataUpdated: () => void; // Define the type of the onDataUpdated prop
-};
-
-const ClubsAndAchievementsForm: React.FC<Props> = ({ onDataUpdated }) => {
+const ClubsAndAchievementsForm: React.FC = () => {
   // State for adding clubs
   const [clubName, setClubName] = useState('');
   const [clubDescription, setClubDescription] = useState('');
@@ -26,7 +22,6 @@ const ClubsAndAchievementsForm: React.FC<Props> = ({ onDataUpdated }) => {
         description: clubDescription,
       });
       console.log("Club added:", response.data);
-      onDataUpdated(); // Callback to refresh data
       // Reset fields
       setClubName('');
       setClubDescription('');
@@ -45,7 +40,6 @@ const ClubsAndAchievementsForm: React.FC<Props> = ({ onDataUpdated }) => {
         date: achievementDate,
       });
       console.log("Achievement added:", response.data);
-      onDataUpdated(); // Callback to refresh data
       // Reset fields
       setAchievementTitle('');
       setAchievementDescription('');
