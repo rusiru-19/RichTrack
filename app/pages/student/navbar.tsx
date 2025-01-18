@@ -16,10 +16,10 @@ const Navbar = () => {
             <Link href="/pages/student/dashboard">Dashboard</Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
-            <Link href="/pages/student/profile">Profile</Link>
+            <Link href="/pages/student/school">school</Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
-            <Link href="/settings">Settings</Link>
+            <Link href="/pages/student/join">Join</Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
            <button onClick={logout}>logout</button>
