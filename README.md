@@ -35,6 +35,46 @@ You can explore the live demo of the project here:
   - Username: `rusiru`
   - Password: `admin123`
 
+# ***About the Project***
+### Task
+Bob, a talented developer, has been entrusted with an exciting project for his school. His task is to design and implement a comprehensive student tracking system for the school administration. Bob envisions a system that not only keeps a detailed record of each student's personal information but also highlights their extracurricular activities and achievements, providing a hulistic view of every student's journey. He wants the system to be intuitive, efficient, and user-friendly, empowering both students and staff.
+
+Bob has reached out to you for help, giving you the creative freedom to design a robust system that fulfills these requirements and includes any additional features you believe would enhance its functionality. This is an opportunity to build something impactful for the school community, making the lives of students, teachers, and administrators easier.
+
+### Admin portal
+The **Admin Portal** is the dedicated platform for website administrators, offering comprehensive management capabilities for users and dynamic site content. Designed for scalability and seamless integration with the backend, the portal ensures efficient operation and growth.
+
+#### Key Features
+
+##### 1. User Management
+- Add new users with unique credentials.
+- Update passwords securely for existing users.
+- Remove inactive or unauthorized users with ease.
+
+##### 2. Content Management
+- Add and manage clubs dynamically to maintain an updated list of opportunities.
+- Create and assign achievements to recognize accomplishments.
+
+##### 3. Dynamic Integration
+- The portal leverages a robust backend, ensuring real-time updates and effortless scalability.
+
+##### 4. User Insights
+- Access detailed personal information for each user, including:
+  - Basic personal details.
+  - Associated clubs and memberships.
+  - Achievements and milestones.
+
+
+
+The Admin Portal empowers administrators to maintain and scale the website efficiently, delivering a seamless experience for all users while fostering a dynamic and engaging platform.
+
+
+
+
+
+
+
+
 # Database Schema
 
 The following tables are part of the database:
