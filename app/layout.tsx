@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "S-track",
+  title: "Richtracker",
 };
 
 export default function RootLayout({

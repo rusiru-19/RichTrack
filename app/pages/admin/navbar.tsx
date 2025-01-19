@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
 <div className="flex min-h-screen" >
   <nav className="lg:w-64 md:w-48 w-32 bg-gray-800 text-white flex flex-col">
-    <div className="p-4 text-xl font-bold border-b border-gray-700">S-tracker</div>
+    <div className="p-4 text-xl font-bold border-b border-gray-700">Richtracker</div>
     <ul className="flex-grow">
       <li className="p-4 hover:bg-gray-700">
         <Link href="/pages/admin/dashboard">Dashboard</Link>

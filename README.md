@@ -31,19 +31,23 @@ You can explore the live demo of the project here:
   - Username: `admin`
   - Password: `admin123`
 
+- **student Login**:
+  - Username: `rusiru`
+  - Password: `admin123`
+
 # Database Schema
 
 The following tables are part of the database:
 
-| Schema  | Name              | Type   | Owner       |
-|---------|-------------------|--------|-------------|
-| public  | achievements       | table  | rits-db_owner |
-| public  | activities         | table  | rits-db_owner |
-| public  | club_memberships   | table  | rits-db_owner |
-| public  | clubs              | table  | rits-db_owner |
-| public  | students           | table  | rits-db_owner |
-| public  | teachers           | table  | rits-db_owner |
-| public  | users              | table  | rits-db_owner |
+| Schema  | Name              | Type    | 
+|---------|-------------------|---------|
+| public  | achievements       | table  |
+| public  | activities         | table  |
+| public  | club_memberships   | table  | 
+| public  | clubs              | table  | 
+| public  | students           | table  | 
+| public  | teachers           | table  |
+| public  | users              | table  | 
 
 ## Security
 

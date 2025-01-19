@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <div className="flex h-screen">
       <nav className="w-64 bg-gray-800 text-white flex flex-col">
-        <div className="p-4 text-xl font-bold border-b border-gray-700">S-tracker</div>
+        <div className="p-4 text-xl font-bold border-b border-gray-700">Rich-tracker</div>
         <ul className="flex-grow">
           <li className="p-4 hover:bg-gray-700">
             <Link href="/pages/student/dashboard">Dashboard</Link>
