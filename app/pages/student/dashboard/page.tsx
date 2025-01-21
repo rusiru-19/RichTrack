@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Ach from "./sub/sub"; // Assuming it's in the 'sub' folder
+import Ach from "./sub/sub"; 
 
 interface StudentProfile {
   first_name: string;
@@ -31,16 +31,14 @@ const StudentDashboard: React.FC = () => {
           throw new Error("User ID is not available in local storage.");
         }
 
-        // Fetch profile data
         const profileResponse = await axios.post("/api/student/profile", { id });
         if (profileResponse.data?.data && Array.isArray(profileResponse.data.data) && profileResponse.data.data.length > 0) {
           setProfile(profileResponse.data.data[0]);
         }
 
-        // Fetch achievements data
         const achievementsResponse = await axios.post("/api/student/ach", { id });
         if (achievementsResponse.data?.data) {
-          setAchievements(achievementsResponse.data.data); // Set achievements data
+          setAchievements(achievementsResponse.data.data);
         }
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -84,7 +82,7 @@ const StudentDashboard: React.FC = () => {
         </div>
       </div>
 
-      <Ach achievements={achievements} /> {/* Pass achievements data to the Ach component */}
+      <Ach achievements={achievements} /> 
     </div>
   );
 };

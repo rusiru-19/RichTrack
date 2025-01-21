@@ -50,8 +50,8 @@ const ClubsAndAchievements = () => {
         username: user,
       });
 
-      setClubs(response.data.message); // Show success message
-      setNotification(`You have successfully joined the ${response.data.message}`); // Display notification
+      setClubs(response.data.message);
+      setNotification(`You have successfully joined the ${response.data.message}`); 
 
     } catch (err) {
       setError("Failed to join club");

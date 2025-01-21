@@ -49,7 +49,7 @@ const AccountManagementForm = () => {
         setSubject('');
         setUsername('');
         setPassword('');
-        setRole(newRole); // Use the newRole parameter to set the role
+        setRole(newRole); 
     };
     
     const handleUpdatePassword = async (e: React.FormEvent) => {
@@ -233,7 +233,7 @@ const AccountManagementForm = () => {
                                 value={role}
                                 onChange={(e) => {
                                     const selectedRole = e.target.value;
-                                    resetFields(selectedRole); // Reset fields when role changes
+                                    resetFields(selectedRole); 
                                 }}
                                 required
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus ```javascript

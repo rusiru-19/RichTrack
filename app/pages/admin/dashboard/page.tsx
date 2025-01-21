@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface DashboardData {
-  count: string; // Adjusted type to string to match the response
+  count: string; 
 }
 
 interface CardProps {
@@ -20,7 +20,7 @@ export default function Dashboard() {
   const fetchData = async () => {
     try {
       const response = await axios.post("/api/admin/dashboard");
-      console.log("API Response:", response.data); // Debugging
+      console.log("API Response:", response.data);
       const counts = response.data.count;
 
       if (Array.isArray(counts)) {

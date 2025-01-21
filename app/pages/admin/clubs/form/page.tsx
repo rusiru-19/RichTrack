@@ -4,11 +4,9 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const ClubsAndAchievementsForm: React.FC = () => {
-  // State for adding clubs
   const [clubName, setClubName] = useState('');
   const [clubDescription, setClubDescription] = useState('');
 
-  // State for adding achievements
   const [achievementTitle, setAchievementTitle] = useState('');
   const [achievementDescription, setAchievementDescription] = useState('');
   const [achievementClubName, setAchievementClubName] = useState('');
@@ -22,7 +20,6 @@ const ClubsAndAchievementsForm: React.FC = () => {
         description: clubDescription,
       });
       console.log("Club added:", response.data);
-      // Reset fields
       setClubName('');
       setClubDescription('');
     } catch (error) {
@@ -40,7 +37,6 @@ const ClubsAndAchievementsForm: React.FC = () => {
         date: achievementDate,
       });
       console.log("Achievement added:", response.data);
-      // Reset fields
       setAchievementTitle('');
       setAchievementDescription('');
       setAchievementClubName('');

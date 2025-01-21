@@ -15,7 +15,7 @@ export default function LandingPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string>('');
   const [isMounted, setIsMounted] = useState(false);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false); 
 
   useEffect(() => {
     setIsMounted(true);
@@ -24,7 +24,7 @@ export default function LandingPage() {
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    setLoading(true); // Set loading to true when login starts
+    setLoading(true); 
     try {
       const response = await axios.post('/api/login', { email, password });
 
@@ -47,7 +47,7 @@ export default function LandingPage() {
       }
       router.push('/');
     } finally {
-      setLoading(false); // Reset loading state after routing
+      setLoading(false);
     }
   };
 
@@ -121,7 +121,6 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Footer Section */}
       <footer className="bg-gray-800 text-gray-400 py-4">
         <div className="container mx-auto text-center">
           <p className="text-sm">© {new Date().getFullYear()} RichTracker. All rights reserved.</p>

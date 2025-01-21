@@ -8,16 +8,16 @@ interface Achievement {
 }
 
 interface AchProps {
-  achievements: Achievement[] | null; // Allow null or an empty array
+  achievements: Achievement[] | null; 
 }
 
 const Ach: React.FC<AchProps> = ({ achievements }) => {
   if (!achievements) {
-    return <div>No achievements available</div>; // Display message if no achievements
+    return <div>No achievements available</div>;
   }
 
   if (achievements.length === 0) {
-    return <div>No achievements found</div>; // Display message if achievements array is empty
+    return <div>No achievements found</div>; 
   }
 
   return (

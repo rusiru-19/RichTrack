@@ -26,7 +26,7 @@ const Timeline: React.FC = () => {
 
         const response = await axios.post("/api/student/school", { id });
         if (response.data?.data) {
-          setAchievements(response.data.data); // Set achievements data
+          setAchievements(response.data.data);
         }
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -55,7 +55,6 @@ const Timeline: React.FC = () => {
     <div className="timeline-container p-4">
       <h2 className="text-2xl text-black font-semibold mb-4">School Achievements Timeline</h2>
       <div className="relative">
-        {/* Timeline */}
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full"></div>
         
         {achievements.map((achievement, index) => {

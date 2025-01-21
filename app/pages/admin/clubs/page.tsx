@@ -26,7 +26,7 @@ const ClubsAndAchievements = () => {
   const [data, setData] = useState<ResponseData>({
     clubs: [],
     achievements: [],
-  }); // Default structure with empty arrays
+  });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
