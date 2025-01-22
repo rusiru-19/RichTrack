@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Modal from "react-modal";
 import Link from "next/link";
+
 interface Schedule {
   id: string;
   date: string;
@@ -12,6 +14,7 @@ interface Schedule {
 export default function ScheduleViewer() {
   const [scheduleData, setScheduleData] = useState<Schedule[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false); // Move useState inside the component
 
   useEffect(() => {
     // Fetch schedule data using Axios
@@ -36,7 +39,32 @@ export default function ScheduleViewer() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Schedule</h1>
-      <div className="overflow-x-auto">
+      <button
+        onClick={() => setModalIsOpen(true)}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Add Schedule
+      </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Event adder"
+        className="bg-white text-black p-6 rounded shadow-lg w-1/3 mx-auto mt-20"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+      >
+        <h2 className="text-2xl mb-4">Add Schedule</h2>
+        <form>
+          <input></input>
+        </form>
+        <button
+          onClick={() => setModalIsOpen(false)}
+          className="bg-red-500 text-white px-2 py-2 rounded"
+        >
+          Close 
+        </button>
+      </Modal>
+
+      <div className="overflow-x-auto mt-4">
         <table className="table-auto w-full border-collapse border border-gray-200">
           <thead>
             <tr className="bg-gray-100">
@@ -54,11 +82,10 @@ export default function ScheduleViewer() {
                 <td className="border border-gray-300 px-4 py-2">{schedule.name}</td>
                 <td className="border border-gray-300 px-4 py-2 text-center">
                   <Link href={`./attendance/${schedule.id}`}>
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                    View Details
-                  </button>
+                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                      Present/Absent
+                    </button>
                   </Link>
-
                 </td>
               </tr>
             ))}

@@ -25,7 +25,7 @@ const Navbar = () => {
             <Link href="/pages/teacher/school">School</Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
-            <Link href="/pages/teacher/attendance">attendance</Link>
+            <Link href="/pages/teacher/attendance">Schedule</Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
            <button onClick={logout}>logout</button>
