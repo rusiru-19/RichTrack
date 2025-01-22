@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/student/join/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/student/join/route.js", "app/api/teacher/attendance/names/route.js", "app/pages/teacher/attendance/[id]/page.jsx"],
   "exclude": ["node_modules"]
 }

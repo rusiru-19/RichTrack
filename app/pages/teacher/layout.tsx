@@ -22,7 +22,7 @@ export default function Studentlayout( {
               transition={{ duration: 0.5 }}
             >
               <Navbar />
-              <main className="flex-grow p-6 bg-gray-100  h-screen">
+              <main className="flex-grow p-6 bg-gray-100 text-black  h-screen">
             {children}
               </main>
 
