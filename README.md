@@ -15,6 +15,8 @@
 - **Student Personal Data Storage**: Stores student personal details for easy access and management.
 - **Analysis of Student Achievements**: Administrators can analyze achievements by club or by school.
 - **Club Management**: Students can join clubs, and teachers/admins can manage and track club-related activities.
+- **Schedule**: Admin/Teachers can mark dates on calender(time+date of practices) and teachers can mark the attendance of that particular event
+-**Notifications**: Students get live notifcations to their dashboard when a teacher set a new event. Notifications will only received to the club members of that particular event.
 - **Role-Based Access Control**: Three user roles:
   - **Admin**: Full control over data, user management, and student achievements.
   - **Teacher**: Can manage student activities and achievements within their assigned clubs.
@@ -33,6 +35,9 @@ You can explore the live demo of the project here:
 
 - **student Login**:
   - Username: `rusiru`
+  - Password: `admin123`
+- **Teacher Login**:
+  - Username: `achini`
   - Password: `admin123`
 
 # ***About the Project***
@@ -64,15 +69,53 @@ The **Admin Portal** is the dedicated platform for website administrators, offer
   - Associated clubs and memberships.
   - Achievements and milestones.
 
+##### 5. Event Managment
+- Create and manage events for clubs and activities.
+ - Can mark the attendance of the students in the events.
+ - Update event details and send notifications to relevant users.
 
 
-The Admin Portal empowers administrators to maintain and scale the website efficiently, delivering a seamless experience for all users while fostering a dynamic and engaging platform.
+### Teachers Portal 
+
+The Teachers portal is dedicated to control center for teachers, providing them with a comprehensive platform to manage students extra-curricular activities. The portal is designed to be user-friendly and efficient.
+
+##### 1. User Insights
+- Access detailed personal information for each user, including:
+  - Basic personal details.
+  - Associated clubs and memberships.
+  - Achievements and milestones.
 
 
+##### 2. Content Management
+- Add and manage clubs dynamically to maintain an updated list of opportunities.
+- Create and assign achievements to recognize accomplishments.
+
+##### 3. Event Managment
+- Create and manage events for clubs and activities.
+ - Can mark the attendance of the students in the events.
+ - Update event details and send notifications to relevant users.
+
+#### 4. School Progress 
+- A timeline of school acheivements by the students.
+ - Provide basic infomation about the student acheivements.
 
 
+### Student Portal
 
+#### 1. User Insights
+- Access detailed personal information of the student
+- Associated clubs and memberships
+- Achievements and milestones.
 
+#### 2. School Progress 
+- A timeline of school acheivements by the students.
+ - Provide basic infomation about the student acheivements.
+
+#### 3. Notification Center
+- Receive notifications about upcoming events and activities.
+
+#### 4. Clubs and Activities
+- View and join clubs and activities.
 
 
 # Database Schema
@@ -88,6 +131,11 @@ The following tables are part of the database:
 | public  | students           | table  | 
 | public  | teachers           | table  |
 | public  | users              | table  | 
+| public  | notifications      | table  | 
+| public  | schedule           | table  | 
+| public  | attendance         | table  | 
+
+
 
 ## Security
 
