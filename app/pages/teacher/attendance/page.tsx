@@ -11,26 +11,60 @@ interface Schedule {
   name: string;
 }
 
+interface Modalinfo {
+  id: string;
+  name: string;
+}
+
 export default function ScheduleViewer() {
   const [scheduleData, setScheduleData] = useState<Schedule[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [modalIsOpen, setModalIsOpen] = useState(false); // Move useState inside the component
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [data, setData] = useState<Modalinfo[]>([]);
+
+  const [selectedClub, setSelectedClub] = useState<string>("");
+  const [date, setDate] = useState<string>("");
+  const [time, setTime] = useState<string>("");
+  const fetchSchedule = async () => {
+    try {
+      const response = await axios.post("/api/teacher/attendance/view");
+      setScheduleData(response.data.data);
+    } catch (error) {
+      console.error("Failed to fetch schedule:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Fetch schedule data using Axios
-    const fetchSchedule = async () => {
-      try {
-        const response = await axios.post("/api/teacher/attendance/view");
-        setScheduleData(response.data.data);
-      } catch (error) {
-        console.error("Failed to fetch schedule:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
+    
     fetchSchedule();
   }, []);
+
+  const modalData = async () => {
+    try {
+      const response = await axios.post("/api/teacher/attendance/modal");
+      setData(response.data.data); 
+    } catch (error) {
+      console.error("Failed to fetch modal data:", error);
+    }
+  };
+
+  const handleAddSchedule = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/teacher/schedule", {
+        club_id: selectedClub,
+        date,
+        time,
+      });
+      console.log("Schedule added successfully:", response.data);
+      setModalIsOpen(false); 
+    } catch (error) {
+      console.error("Failed to add schedule:", error);
+    }
+    fetchSchedule();
+  };
 
   if (loading) {
     return <div className="text-center">Loading...</div>;
@@ -40,7 +74,10 @@ export default function ScheduleViewer() {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Schedule</h1>
       <button
-        onClick={() => setModalIsOpen(true)}
+        onClick={() => {
+          modalData();
+          setModalIsOpen(true);
+        }}
         className="bg-blue-500 text-white px-4 py-2 rounded"
       >
         Add Schedule
@@ -53,14 +90,55 @@ export default function ScheduleViewer() {
         overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
       >
         <h2 className="text-2xl mb-4">Add Schedule</h2>
-        <form>
-          <input></input>
+        <form onSubmit={handleAddSchedule}>
+          <label className="block mb-2">
+            Select Club:
+            <select
+              value={selectedClub}
+              onChange={(e) => setSelectedClub(e.target.value)}
+              className="w-full border border-gray-300 px-2 py-1 rounded mt-1"
+              required
+            >
+              <option value="">Select a club</option>
+              {data.map((club) => (
+                <option key={club.id} value={club.id}>
+                  {club.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="block mb-2">
+            Date:
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="w-full border border-gray-300 px-2 py-1 rounded mt-1"
+              required
+            />
+          </label>
+          <label className="block mb-2">
+            Time:
+            <input
+              type="time"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+              className="w-full border border-gray-300 px-2 py-1 rounded mt-1"
+              required
+            />
+          </label>
+          <button
+            type="submit"
+            className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+          >
+            Add Schedule
+          </button>
         </form>
         <button
           onClick={() => setModalIsOpen(false)}
-          className="bg-red-500 text-white px-2 py-2 rounded"
+          className="bg-red-500 text-white px-2 py-2 rounded mt-4"
         >
-          Close 
+          Close
         </button>
       </Modal>
 
