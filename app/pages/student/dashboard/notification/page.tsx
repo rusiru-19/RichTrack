@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Notification {
+    id: string; // Assuming each notification has a unique ID
     title: string;
     message: string;
+    is_read: boolean; // Add a property to track read status
 }
 
 export default function Notification() {
@@ -45,6 +47,27 @@ export default function Notification() {
 
     const toggleNotifications = () => {
         setShowNotifications(!showNotifications);
+        if (!showNotifications) {
+            markNotificationsAsRead();
+        }
+    };
+
+    const markNotificationsAsRead = async () => {
+        const unreadNotifications = notifications.filter(notification => !notification.is_read);
+        if (unreadNotifications.length > 0) {
+            try {
+                await axios.post('/api/notification/is_read', { notifications: unreadNotifications.map(n => n.id) });
+                setNotifications(prevNotifications =>
+                    prevNotifications.map(notification =>
+                        unreadNotifications.some(unread => unread.id === notification.id)
+                            ? { ...notification, is_read: true }
+                            : notification
+                    )
+                );
+            } catch (err) {
+                console.error("Failed to mark notifications as read", err);
+            }
+        }
     };
 
     if (loading) {
@@ -58,14 +81,14 @@ export default function Notification() {
     return (
         <div style={{ display: 'flex', justifyContent: 'flex-end', position: 'relative' }}>
             <div onClick={toggleNotifications} style={{ cursor: 'pointer' }}>
-                    <img 
-                        src="/img/bell.png" 
-                        alt="Notifications" 
-                        width={40} 
-                        height={40} 
-                        style={{ cursor: 'pointer' }} 
-                    />           
-                    {notifications.length > 0 && (
+                <img 
+                    src="/img/bell.png" 
+                    alt="Notifications" 
+                    width={40} 
+                    height={40} 
+                    style={{ cursor: 'pointer' }} 
+                />           
+                {notifications.length > 0 && (
                     <span style={{
                         position: 'absolute',
                         top: 0,
@@ -76,7 +99,7 @@ export default function Notification() {
                         padding: '2px 5px',
                         fontSize: '12px'
                     }}>
-                        {notifications.length}
+                        {notifications.filter(n => !n.is_read).length}
                     </span>
                 )}
             </div>
@@ -96,7 +119,7 @@ export default function Notification() {
                     <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
                         {notifications.length > 0 ? (
                             notifications.map((notification, index) => (
-                                <li key={index} style={{ padding: '5px 0', borderBottom: '1px solid #eee' }}>
+                                <li key={index} style={{ padding: '5px 0', borderBottom: '1px solid #eee', opacity: notification.is_read ? 0.5 : 1 }}>
                                     <strong>{notification.title}</strong>: {notification.message}
                                 </li>
                             ))

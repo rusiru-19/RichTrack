@@ -22,6 +22,9 @@ const Navbar = () => {
         <Link href="/pages/admin/clubs">Clubs</Link>
       </li>
       <li className="p-4 hover:bg-gray-700">
+        <Link href="/pages/admin/attendance">Schedule</Link>
+      </li>
+      <li className="p-4 hover:bg-gray-700">
         <Link href="/pages/admin/settings">Settings</Link>
       </li>
       <li className="p-4 hover:bg-gray-700">
