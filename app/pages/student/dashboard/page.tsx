@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Ach from "./sub/sub"; 
-
+import Notification from "./notification/page"
 interface StudentProfile {
   first_name: string;
   last_name: string;
@@ -66,6 +66,7 @@ const StudentDashboard: React.FC = () => {
   return (
     <div className="p-4 text-black">
       <h1 className="text-2xl text-black font-bold mb-4">Welcome</h1>
+      <Notification />
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-xl font-semibold mb-2">Profile Information</h2>
         <div className="mb-4">
