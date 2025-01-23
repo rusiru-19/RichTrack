@@ -15,8 +15,8 @@
 - **Student Personal Data Storage**: Stores student personal details for easy access and management.
 - **Analysis of Student Achievements**: Administrators can analyze achievements by club or by school.
 - **Club Management**: Students can join clubs, and teachers/admins can manage and track club-related activities.
-- **Schedule**: Admin/Teachers can mark dates on calender(time+date of practices) and teachers can mark the attendance of that particular event
--**Notifications**: Students get live notifcations to their dashboard when a teacher set a new event. Notifications will only received to the club members of that particular event.
+- **Scheduler**: Admin/Teachers can mark dates on calender(time+date of practices) and teachers can mark the attendance of that particular event
+- **Notifications**: Students get live notifcations to their dashboard when a teacher set a new event. Notifications will only received to the club members of that particular event.
 - **Role-Based Access Control**: Three user roles:
   - **Admin**: Full control over data, user management, and student achievements.
   - **Teacher**: Can manage student activities and achievements within their assigned clubs.
