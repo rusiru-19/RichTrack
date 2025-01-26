@@ -209,6 +209,8 @@ The following packages are used in the **Richtracker** project:
 - **typescript**: JavaScript superset for static typing and modern development.
 
 
+## Contact
+Created by Rusiru Thama AKA nospe - evildev360@gmail.com - [My work](https://portfolio-phi-taupe-65.vercel.app/)
 
 
 
