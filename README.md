@@ -153,6 +153,29 @@ In this project, **JSON Web Tokens (JWT)** are used for secure session managemen
 2. **Session Management:**
    - Each time the user interacts with the backend, the JWT is sent in the `Authorization` header of HTTP requests (as a Bearer token).
    - The backend verifies the JWT to authenticate the user and ensure the request is coming from a valid session.
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/rusiru-19/RichTrack.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd RichTrack
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+## Usage
+1. Open the browser and go to `http://localhost:3000`.
+2. Explore the features:
+   - log in with credentials given above
+   - Browse through available content.
   
 
 ## Used Packages
